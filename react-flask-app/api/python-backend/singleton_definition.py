@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, Type
 
 
@@ -7,7 +7,7 @@ class SingletonMeta(type):
     """
     Definition of singleton pattern that will be used as metaclass when needed.
     """
-    _instances: dict[Type[Any], Any] = {} # Dictionary object that stores created instances of class.
+    _instances: dict[Type[Any], Any] = field(default_factory=dict) # Dictionary object that stores created instances of class.
 
     def __call__(cls: Type[Any], *args: Any, **kwargs: Any) -> Any:
         """
