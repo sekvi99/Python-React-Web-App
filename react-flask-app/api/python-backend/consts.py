@@ -15,9 +15,14 @@ ENV_FILE_HANDLER: Final[EnvFileManager] =  EnvFileManager(ENV_FILE_PATH)
 STOCK_EXCHANGE_URL: Final[str] = ENV_FILE_HANDLER.get_variable('STOCK_EXCHANGE_URL')
 CURRENCY_RATES_URL: Final[str] = ENV_FILE_HANDLER.get_variable('CURRENCY_RATES_URL')
 
+# Extracting api key
+API_KEY: Final[str] = ENV_FILE_HANDLER.get_variable('API_KEY')
+
+# Extracting secret key
+SECRET_KEY: Final[str] = ENV_FILE_HANDLER.get_variable('SECRET_KEY')
+
 # Regex definition
 URL_REGEX: Final[str] = r'^(https?:\/\/(?:www\.)?alphavantage\.co\/query\?function=TIME_SERIES_DAILY&symbol=.+&outputsize=full&apikey=demo|https?:\/\/(?:www\.)?bankier\.pl\/new-charts\/get-data\?symbol=.+PLN&intraday=false&type=area&max_period=true)$'
-
 
 
 
