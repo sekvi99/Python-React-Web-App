@@ -15,7 +15,7 @@ class AbstractAPIRequestManager(ABC):
         ValueError: Occures when provided url does not match with regex expression or request type is diffrent than GET or POST.
     """
     validate_regex: str # Regex expression to check whether url is in correct form
-    request_type: str # Expected GET or Post
+    request_type: str  = field(init=False) # Expected GET or Post
     endpoint: str = field(init=False) # Url representation of endpoint
     
     def __post_init__(self) -> None:
@@ -25,7 +25,7 @@ class AbstractAPIRequestManager(ABC):
             ValueError: Occures when url format is invalid.
             ValueError: Occures when request type is diffrent than GET or POST.
         """
-        if self.endpoint and not re.match(self.validate_regex, self.url):
+        if self.endpoint and not re.match(self.validate_regex, self.endpoint):
             raise ValueError('Invalid URL Format')
         
         if self.request_type not in ['GET', 'POST']:
@@ -39,7 +39,7 @@ class AbstractAPIRequestManager(ABC):
         Returns:
             str: String representation of endpoint.
         """
-        return self.endpoint
+        return self._endpoint
     
     @endpoint.setter
     def endpoint(self, url: str) -> None:
@@ -54,7 +54,7 @@ class AbstractAPIRequestManager(ABC):
         """
         if not re.match(self.validate_regex, url):
             raise ValueError('Invalid URL Format')
-        self.endpoint = url
+        self._endpoint = url
         
     @property
     def request_type(self) -> str:
@@ -64,10 +64,10 @@ class AbstractAPIRequestManager(ABC):
         Returns:
             str: String representation of request_type.
         """
-        return self.request_type
+        return self._request_type
     
     @request_type.setter
-    def request_type(self, type: str) -> None:
+    def request_type(self, method: str) -> None:
         """
         Declaration of setter for request_type field.
 
@@ -77,9 +77,9 @@ class AbstractAPIRequestManager(ABC):
         Raises:
             ValueError: Occures when request type is diffrent than GET or POST.
         """
-        if type not in ['GET', 'POST']:
+        if method not in ['GET', 'POST']:
             raise ValueError('Request type can not be diffrent than GET or POST')
-        self.request_type = type
+        self._request_type = method
         
     @abstractmethod
     def process_api_response(self) -> dict:
