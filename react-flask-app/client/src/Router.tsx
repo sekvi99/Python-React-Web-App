@@ -1,8 +1,8 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom"
-import LandingPage from "./pages/LandingPage"
-import NotFound from "./pages/NotFound"
-import LoginPage from "./pages/LoginPage"
-import RegisterPage from "./pages/RegisterPage"
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import NotFound from "./pages/NotFound";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 
 const Router = () => {
     return (
@@ -17,4 +17,4 @@ const Router = () => {
     )
 }
 
-export default Router
+export default Router;

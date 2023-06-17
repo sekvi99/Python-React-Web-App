@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { User } from "../types";
 import httpClient from "../httpClient";
+import Navbar from '../components/Navbar/navbar';
 
 const LandingPage: React.FC = () => {
     const [user, setUser] = useState<User | null>(null);
@@ -23,6 +24,7 @@ const LandingPage: React.FC = () => {
 
     return (
         <div>
+          <Navbar />
           <h1>Welcome to this React Application</h1>
           {user != null ? (
             <div>
