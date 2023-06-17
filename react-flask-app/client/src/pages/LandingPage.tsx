@@ -2,10 +2,19 @@ import React, {useState, useEffect} from "react";
 import { User } from "../types";
 import httpClient from "../httpClient";
 import Navbar from '../components/Navbar/navbar';
+import Sidebar from '../components/Sidebar/sidebar';
+import { SidebarProps } from "../interfaces/sidebar.interface";
 
-const LandingPage: React.FC = () => {
+
+const LandingPage: React.FC<SidebarProps> = () => {
+    const [isOpen, setIsOpen] = useState(false);
     const [user, setUser] = useState<User | null>(null);
 
+    const toggle = (): void => {
+      // false -> true or true -> false
+      setIsOpen(!isOpen);
+    }
+    
     const logoutUser = async () => {
       await httpClient.post("//localhost:5000/logout");
       window.location.href = "/";
@@ -24,8 +33,8 @@ const LandingPage: React.FC = () => {
 
     return (
         <div>
-          <Navbar />
-          <h1>Welcome to this React Application</h1>
+          <Sidebar isOpen={isOpen} toggle={toggle} />
+          <Navbar toggle={toggle} />
           {user != null ? (
             <div>
               <h2>Logged in</h2>

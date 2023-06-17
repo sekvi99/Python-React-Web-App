@@ -10,15 +10,16 @@ import {
     NavLinks, 
     NavBtn,
     NavBtnLink } from './navbarElements';
+import { ToggleProps } from '../../interfaces/sidebar.interface';
 
-const navbar: React.FC = () => {
+const navbar: React.FC<ToggleProps> = ({ toggle }) => {
   return (
     <>
         <Nav>
             <NavbarContainer>
                 <NavLogo to="/">Menu</NavLogo>
                 
-                <MobileIcon>
+                <MobileIcon onClick={toggle}>
                     <FaBars />
                 </MobileIcon>
 

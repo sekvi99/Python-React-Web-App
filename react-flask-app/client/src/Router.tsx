@@ -4,7 +4,7 @@ import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 
-const Router = () => {
+const Router: React.FC = () => {
     return (
         <BrowserRouter>
             <Switch>
