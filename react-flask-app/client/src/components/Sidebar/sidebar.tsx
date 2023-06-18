@@ -10,8 +10,17 @@ import {
     SidebarMenu
  } from './sidebarElements';
 import { SidebarProps } from '../../interfaces/sidebar.interface';
+import { useHistory } from 'react-router-dom';
 
-const sidebar: React.FC<SidebarProps> = ({isOpen, toggle}) => {
+const Sidebar: React.FC<SidebarProps> = ({isOpen, toggle}) => {
+    const history = useHistory();
+
+    const handleNavBtnLinkClick = (route: string) => {
+    // refresh page after route change
+    history.push(route);
+    window.location.reload();
+  };
+
   return (
     <SidebarContainer isOpen={isOpen} onClick={toggle}>
         <Icon onClick={toggle}>
@@ -19,15 +28,15 @@ const sidebar: React.FC<SidebarProps> = ({isOpen, toggle}) => {
         </Icon>
         <SidebarWrapper>
             <SidebarMenu>
-                <SidebarLink to="about">
+                <SidebarLink to="about" onClick={() => handleNavBtnLinkClick('/about')}>
                     About
                 </SidebarLink>
-                <SidebarLink to="register">
+                <SidebarLink to="register" onClick={() => handleNavBtnLinkClick('/register')}>
                     Register
                 </SidebarLink>
             </SidebarMenu>
             <SideBtnWrap>
-                <SideBarRoute to="/login">
+                <SideBarRoute to="/login" onClick={() => handleNavBtnLinkClick('/login')}>
                     Sign In
                 </SideBarRoute>
             </SideBtnWrap>
@@ -37,4 +46,4 @@ const sidebar: React.FC<SidebarProps> = ({isOpen, toggle}) => {
   
 };
 
-export default sidebar;
+export default Sidebar;
