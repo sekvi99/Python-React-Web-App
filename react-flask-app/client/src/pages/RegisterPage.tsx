@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import httpClient from "../httpClient";
 import Navbar from '../components/Navbar/navbar';
 import Sidebar from '../components/Sidebar/sidebar';
+import { FormContainer, Heading, Form, FormParagraph, Input, Button } from './pagesElements/authenticationFormElements';
 
 const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -29,34 +30,33 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <Sidebar isOpen={isOpen} toggle={toggle} />
-      <Navbar toggle={toggle} />
-      <h1>Create an account</h1>
-      <form>
-        <div>
-          <label>Email: </label>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            id=""
-          />
-        </div>
-        <div>
-          <label>Password: </label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            id=""
-          />
-        </div>
-        <button type="button" onClick={() => registerUser()}>
-          Submit
-        </button>
-      </form>
-    </div>
+          <div>
+          <Sidebar isOpen={isOpen} toggle={toggle} />
+          <Navbar toggle={toggle} />
+          <FormContainer>
+            <Heading>Create An Account</Heading>
+            <FormParagraph>Registration Required: </FormParagraph>
+            <Form>
+              <Input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                id=""
+              />
+              <Input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                id=""
+              />
+              <Button type="button" onClick={() => registerUser()}>
+                Submit
+              </Button>
+            </Form>
+          </FormContainer>
+          </div>
   );
 };
 
