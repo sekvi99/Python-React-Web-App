@@ -21,6 +21,12 @@ export const SidebarContainer: StyledComponent<"aside", any, SidebarContainerPro
 
 export const CloseIcon: StyledComponent<typeof FaTimes, any, {}, never> = styled(FaTimes)`
     color: #fff;
+
+    &:hover{
+        background: #349CFE;
+        border-radius: 10px;
+        transition: 0.2s all ease-in-out;
+    }
 `;
 
 export const Icon: StyledComponent<"div", any, {}, never> = styled.div`
@@ -62,7 +68,7 @@ export const SidebarLink: StyledComponent<typeof LinkS, any, {}, never> = styled
     cursor: pointer;
 
     &:hover{
-        color: #01bf71;
+        color: #349CFE;
         transition: 0.2s ease-in-out;
     }
 `;
@@ -74,7 +80,7 @@ export const SideBtnWrap: StyledComponent<"div", any, {}, never> = styled.div`
 
 export const SideBarRoute: StyledComponent<typeof LinkR, any, {}, never> = styled(LinkR)`
     border-radius: 50px;
-    background: #01bf71;
+    background: #349CFE;
     white-space: nowrap;
     padding: 16px 64px;
     color: #010606;
@@ -88,6 +94,6 @@ export const SideBarRoute: StyledComponent<typeof LinkR, any, {}, never> = style
     &:hover{
         transition: all 0.2s ease-in-out;
         background: #fff;
-        color: #010606;
+        color: #349CFE;
     }
 `;

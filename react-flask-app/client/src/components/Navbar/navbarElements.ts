@@ -13,6 +13,7 @@ export const Nav: StyledComponent<"nav", any, {}, never> = styled.nav`
     position: sticky;
     top: 0;
     z-index: 10;
+    margin-bottom: 50px;
 
     @media screen and (max-width: 960px){
         transition: 0.8s all ease;
@@ -39,6 +40,13 @@ export const NavLogo: StyledComponent<typeof LinkR, any, {}, never> = styled(Lin
     margin-left: 24px;
     font-weight: bold;
     text-decoration: none;
+
+    &:hover{
+        font-weight: bold;
+        color: #349CFE;
+        border-bottom: 1px sold #349CFE;
+        transition: 0.2s all ease-in-out;
+    }
 `;
 
 export const MobileIcon: StyledComponent<"div", any, {}, never> = styled.div`
@@ -53,6 +61,12 @@ export const MobileIcon: StyledComponent<"div", any, {}, never> = styled.div`
         font-size: 1.8rem;
         cursor: pointer;
         color: #fff;
+    }
+
+    &:hover{
+        background: #349CFE;
+        border-radius: 2px;
+        transition: 0.2s all ease-in-out;
     }
 `;
 
@@ -73,7 +87,7 @@ export const NavItem: StyledComponent<"li", any, {}, never> = styled.li`
 `;
 
 
-export const NavLinks: StyledComponent<typeof LinkS, any, {}, never> = styled(LinkS)`
+export const NavLinks: StyledComponent<typeof LinkR, any, {}, never> = styled(LinkR)`
     color: #fff;
     margin-right: 25px;
     display: flex;
@@ -84,8 +98,9 @@ export const NavLinks: StyledComponent<typeof LinkS, any, {}, never> = styled(Li
     cursor: pointer;
 
     // Setting active of parent element
-    &.active{
-        border-bottom: 3px sold #01bf71;
+    &:hover{
+        color: #349CFE;
+        transition: 0.2s all ease-in-out;
     }
 `;
 
@@ -100,7 +115,7 @@ export const NavBtn: StyledComponent<"nav",  any, {}, never> = styled.nav`
 
 export const NavBtnLink: StyledComponent<typeof LinkR, any, {}, never>  = styled(LinkR)`
     border-radius: 50px;
-    background: #01bf71;
+    background: #349CFE;
     white-space: nowrap;
     padding: 10px 22px;
     color: #010606;
@@ -114,6 +129,6 @@ export const NavBtnLink: StyledComponent<typeof LinkR, any, {}, never>  = styled
     &:hover{
         transition: all 0.2s ease-in-out;
         background: #fff;
-        color: #010606;
+        color: #349CFE;
     }
 `;
