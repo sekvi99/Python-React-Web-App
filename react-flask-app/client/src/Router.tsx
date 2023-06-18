@@ -3,6 +3,7 @@ import LandingPage from "./pages/LandingPage";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import AboutPage from "./pages/AboutPage";
 
 const Router: React.FC = () => {
     return (
@@ -11,6 +12,7 @@ const Router: React.FC = () => {
                 <Route path="/" exact component={LandingPage}/>
                 <Route path="/login" exact component={LoginPage}/>
                 <Route path="/register" exact component={RegisterPage}/>
+                <Route path="/about" exact component={AboutPage}/>
                 <Route component={NotFound}/>
             </Switch>
         </BrowserRouter>

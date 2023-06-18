@@ -3,7 +3,9 @@
     "@types/react-scroll": "^1.8.7"
   },
   "dependencies": {
+    "@types/react-bootstrap": "^0.32.32",
     "@types/recharts": "^1.8.24",
+    "bootstrap": "^5.3.0",
     "react-icons": "^4.9.0",
     "recharts": "^2.7.1"
   }
