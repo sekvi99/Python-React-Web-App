@@ -4,6 +4,8 @@ import httpClient from "../httpClient";
 import Navbar from '../components/Navbar/navbar';
 import Sidebar from '../components/Sidebar/sidebar';
 import { SidebarProps } from "../interfaces/sidebar.interface";
+import LandingSection from "../components/LandingSection/landingSection";
+
 
 
 const LandingPage: React.FC<SidebarProps> = () => {
@@ -44,17 +46,7 @@ const LandingPage: React.FC<SidebarProps> = () => {
               <button onClick={logoutUser}>Logout</button>
             </div>
           ) : (
-            <div>
-              <p>You are not logged in</p>
-              <div>
-                <a href="/login">
-                  <button>Login</button>
-                </a>
-                <a href="/register">
-                  <button>Register</button>
-                </a>
-              </div>
-            </div>
+            <LandingSection />
           )}
         </div>
       );

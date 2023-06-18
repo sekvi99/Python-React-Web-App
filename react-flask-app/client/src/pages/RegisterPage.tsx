@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import httpClient from "../httpClient";
+import Navbar from '../components/Navbar/navbar';
+import Sidebar from '../components/Sidebar/sidebar';
 
 const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = (): void => {
+    // false -> true or true -> false
+    setIsOpen(!isOpen);
+  }
 
   const registerUser = async () => {
     try {
@@ -22,6 +30,8 @@ const RegisterPage: React.FC = () => {
 
   return (
     <div>
+      <Sidebar isOpen={isOpen} toggle={toggle} />
+      <Navbar toggle={toggle} />
       <h1>Create an account</h1>
       <form>
         <div>
