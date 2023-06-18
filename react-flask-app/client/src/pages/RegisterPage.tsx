@@ -3,6 +3,7 @@ import httpClient from "../httpClient";
 import Navbar from '../components/Navbar/navbar';
 import Sidebar from '../components/Sidebar/sidebar';
 import { FormContainer, Heading, Form, FormParagraph, Input, Button } from './pagesElements/authenticationFormElements';
+import Footer from "../components/Footer/footer";
 
 const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -56,6 +57,7 @@ const RegisterPage: React.FC = () => {
               </Button>
             </Form>
           </FormContainer>
+          <Footer />
           </div>
   );
 };

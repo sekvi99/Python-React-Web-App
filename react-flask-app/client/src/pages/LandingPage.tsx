@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar/navbar';
 import Sidebar from '../components/Sidebar/sidebar';
 import { SidebarProps } from "../interfaces/sidebar.interface";
 import LandingSection from "../components/LandingSection/landingSection";
-
+import Footer from "../components/Footer/footer";
 
 
 const LandingPage: React.FC<SidebarProps> = () => {
@@ -48,6 +48,7 @@ const LandingPage: React.FC<SidebarProps> = () => {
           ) : (
             <LandingSection />
           )}
+          <Footer />
         </div>
       );
     };

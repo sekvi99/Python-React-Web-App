@@ -3,6 +3,8 @@ import httpClient from "../httpClient";
 import Navbar from '../components/Navbar/navbar';
 import Sidebar from '../components/Sidebar/sidebar';
 import { FormContainer, Heading, Form, FormParagraph, Input, Button } from './pagesElements/authenticationFormElements';
+import Footer from "../components/Footer/footer";
+
 const LoginPage: React.FC = () => {
     // Default state for both login and password is an empty string
     const [email, setEmail] = useState<string>("");
@@ -57,6 +59,7 @@ const LoginPage: React.FC = () => {
             </Button>
           </Form>
         </FormContainer>
+        <Footer />
         </div>
     );
 };
