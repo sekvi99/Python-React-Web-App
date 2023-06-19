@@ -6,7 +6,7 @@ import Sidebar from '../components/Sidebar/sidebar';
 import { SidebarProps } from "../interfaces/sidebar.interface";
 import LandingSection from "../components/LandingSection/landingSection";
 import Footer from "../components/Footer/footer";
-
+import DemoChart from "../components/DemoChart/demoChart";
 
 const LandingPage: React.FC<SidebarProps> = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +46,9 @@ const LandingPage: React.FC<SidebarProps> = () => {
               <button onClick={logoutUser}>Logout</button>
             </div>
           ) : (
+            <>
             <LandingSection />
+            </>
           )}
           <Footer />
         </div>

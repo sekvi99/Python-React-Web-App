@@ -31,10 +31,9 @@ const LandingSection: React.FC = () => {
         </span>
       </LandingTextSection>
       <LandingHeaderSection>
-        Demo of graphical possibilities
+        Application Demo
       </LandingHeaderSection>
       <LandingGraphSection>
-        <h2>Graph Placeholder</h2>
         <DemoChart />
       </LandingGraphSection>
     </LandingSectionContainer>
