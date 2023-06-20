@@ -2,6 +2,7 @@ from ..abstract_api_request import AbstractAPIRequestManager
 from dataclasses import dataclass, field
 import requests
 from typing import Any
+import json
 
 
 @dataclass(kw_only=True)
@@ -41,9 +42,8 @@ class StockMarketAPIRequestManager(AbstractAPIRequestManager):
             
             if response.status_code == 200:
                 data = (response.json())['Time Series (Daily)']
-                
-                return {
-                    f'{symbol}':[
+                result = {
+                    'data':[
                         {
                             'date': key,
                             'open': float(value['1. open']),
@@ -56,6 +56,8 @@ class StockMarketAPIRequestManager(AbstractAPIRequestManager):
                         for key, value in data.items()
                     ]
                 }
+
+                return json.dumps(result)
                 
             else:
                 return {'status': 'Unable to extract data - from unknown reasons'}    
