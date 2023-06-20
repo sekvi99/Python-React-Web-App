@@ -6,7 +6,7 @@ import Sidebar from '../components/Sidebar/sidebar';
 import { SidebarProps } from "../interfaces/sidebar.interface";
 import LandingSection from "../components/LandingSection/landingSection";
 import Footer from "../components/Footer/footer";
-import DemoChart from "../components/DemoChart/demoChart";
+import StockMarket from "../components/Charts/stockMarketDashboard";
 
 const LandingPage: React.FC<SidebarProps> = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +42,12 @@ const LandingPage: React.FC<SidebarProps> = () => {
               <h2>Logged in</h2>
               <h3>ID: {user.id}</h3>
               <h3>Email: {user.email}</h3>
+              {/* <StockMarket symbol="TSCO.LON"/>
+              <StockMarket symbol="SHOP.TRT"/>
+              <StockMarket symbol="GPV.TRV"/>
+              <StockMarket symbol="DAI.DEX"/>
+              <StockMarket symbol="RELIANCE.BSE"/> */}
+
     
               <button onClick={logoutUser}>Logout</button>
             </div>
