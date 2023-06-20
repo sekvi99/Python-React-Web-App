@@ -7,6 +7,7 @@ import { SidebarProps } from "../interfaces/sidebar.interface";
 import LandingSection from "../components/LandingSection/landingSection";
 import Footer from "../components/Footer/footer";
 import StockMarket from "../components/Charts/stockMarketDashboard";
+import CurrencyDashboard from "../components/Charts/ccurrencyChartDashboard";
 
 const LandingPage: React.FC<SidebarProps> = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -47,6 +48,7 @@ const LandingPage: React.FC<SidebarProps> = () => {
               <StockMarket symbol="GPV.TRV"/>
               <StockMarket symbol="DAI.DEX"/>
               <StockMarket symbol="RELIANCE.BSE"/> */}
+              <CurrencyDashboard symbol="EUR" />
 
     
               <button onClick={logoutUser}>Logout</button>
