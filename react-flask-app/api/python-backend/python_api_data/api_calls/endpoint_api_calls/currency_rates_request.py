@@ -2,6 +2,7 @@ from ..abstract_api_request import AbstractAPIRequestManager
 from dataclasses import dataclass, field
 import requests
 import datetime
+import json
 
 @dataclass(kw_only=True)
 class CurrencyRatesRequestManager(AbstractAPIRequestManager):
@@ -34,8 +35,8 @@ class CurrencyRatesRequestManager(AbstractAPIRequestManager):
             if response.status_code == 200:
                 data = (response.json()).get('main')
                 
-                return {
-                    f'{currency}':[
+                result =  {
+                    'data':[
                         {
                             'date': datetime.datetime.fromtimestamp(frame[0]/ 1000).strftime('%Y-%m-%d %H:%M:%S'),
                             'value': float(frame[1]),
@@ -43,6 +44,8 @@ class CurrencyRatesRequestManager(AbstractAPIRequestManager):
                         for frame in data
                     ]
                 }
+                
+                return json.dumps(result)
                     
                 
             else:
