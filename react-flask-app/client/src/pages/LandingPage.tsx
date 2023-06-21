@@ -1,26 +1,24 @@
 import React, {useState, useEffect} from "react";
 import { User } from "../types";
 import httpClient from "../httpClient";
-import Navbar from '../components/Navbar/navbar';
-import Sidebar from '../components/Sidebar/sidebar';
 import { SidebarProps } from "../interfaces/sidebar.interface";
 import LandingSection from "../components/LandingSection/landingSection";
-import Footer from "../components/Footer/footer";
 import StockMarket from "../components/Charts/stockMarketDashboard";
 import CurrencyDashboard from "../components/Charts/ccurrencyChartDashboard";
+import { TabButton, TabSection } from "./pagesElements/landingPageTabs";
+import Layout from "../components/Layout/layout";
+
+enum Tab {
+  CurrencyRatesCharts,
+  StockMarketCharts,
+}
 
 const LandingPage: React.FC<SidebarProps> = () => {
-    const [isOpen, setIsOpen] = useState(false);
     const [user, setUser] = useState<User | null>(null);
+    const [activeTab, setActiveTab] = useState(Tab.CurrencyRatesCharts);
 
-    const toggle = (): void => {
-      // false -> true or true -> false
-      setIsOpen(!isOpen);
-    }
-    
-    const logoutUser = async () => {
-      await httpClient.post("//localhost:5000/logout");
-      window.location.href = "/";
+    const handleTabChange = (tab: Tab): void => {
+      setActiveTab(tab);
     };
   
     useEffect(() => {
@@ -35,31 +33,57 @@ const LandingPage: React.FC<SidebarProps> = () => {
     }, []);
 
     return (
+      <Layout>
         <div>
-          <Sidebar isOpen={isOpen} toggle={toggle} />
-          <Navbar toggle={toggle} />
           {user != null ? (
             <div>
+              <div>
+              <TabSection>
               <h2>Logged in</h2>
-              <h3>ID: {user.id}</h3>
-              <h3>Email: {user.email}</h3>
-              {/* <StockMarket symbol="TSCO.LON"/>
-              <StockMarket symbol="SHOP.TRT"/>
-              <StockMarket symbol="GPV.TRV"/>
-              <StockMarket symbol="DAI.DEX"/>
-              <StockMarket symbol="RELIANCE.BSE"/> */}
-              <CurrencyDashboard symbol="EUR" />
+              <h3>Hello: {user.email}</h3>
+                <TabButton
+                  onClick={() => handleTabChange(Tab.CurrencyRatesCharts)}
+                  isActive={activeTab === Tab.CurrencyRatesCharts}
+                >
+                  Currency Rates Charts
+                </TabButton>
+                <TabButton
+                  onClick={() => handleTabChange(Tab.StockMarketCharts)}
+                  isActive={activeTab === Tab.StockMarketCharts}
+                >
+                  Stock Market Charts
+                </TabButton>
+              </TabSection>
 
-    
-              <button onClick={logoutUser}>Logout</button>
+              {activeTab === Tab.CurrencyRatesCharts && (
+                <div>
+                  <h2>Currency Rates Charts</h2>
+                  <CurrencyDashboard symbol="EUR"/>
+                  <CurrencyDashboard symbol="USD"/>
+                  <CurrencyDashboard symbol="GBP"/>
+                </div>
+              )}
+
+              {activeTab === Tab.StockMarketCharts && (
+                <div>
+                  <h2>Currency Rates Charts</h2>
+                  <StockMarket symbol="IBM" />
+                  <StockMarket symbol="TSCO.LON" />
+                  <StockMarket symbol="SHOP.TRT" />
+                  <StockMarket symbol="DAI.DEX" />
+                  <StockMarket symbol="RELIANCE.BSE" />
+                </div>
+              )}
+              
+              </div>
             </div>
           ) : (
             <>
             <LandingSection />
             </>
           )}
-          <Footer />
         </div>
+      </Layout>
       );
     };
 
