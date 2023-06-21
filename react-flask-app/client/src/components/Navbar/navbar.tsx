@@ -3,8 +3,9 @@ import { FaBars } from "react-icons/fa";
 import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, NavBtn, NavBtnLink } from './navbarElements';
 import { ToggleProps } from '../../interfaces/sidebar.interface';
 import { useHistory } from 'react-router-dom';
+import { logoutUser } from '../../helpers';
 
-const Navbar: React.FC<ToggleProps> = ({ toggle }) => {
+const Navbar: React.FC<ToggleProps> = ({ toggle, user }) => {
     const history = useHistory();
 
     const handleNavBtnLinkClick = (route: string) => {
@@ -33,9 +34,15 @@ const Navbar: React.FC<ToggleProps> = ({ toggle }) => {
           </NavMenu>
 
           <NavBtn>
-            <NavBtnLink to="login" onClick={() => handleNavBtnLinkClick('/login')}>
+            {user != null ? (
+              <NavBtnLink to="/" onClick={() => logoutUser()}>
+                Sign Out
+              </NavBtnLink>
+            ): (
+              <NavBtnLink to="/" onClick={() => handleNavBtnLinkClick('/login')}>
               Sign In
             </NavBtnLink>
+            )}
           </NavBtn>
         </NavbarContainer>
       </Nav>

@@ -1,19 +1,11 @@
 import React, { useState } from "react";
 import httpClient from "../httpClient";
-import Navbar from '../components/Navbar/navbar';
-import Sidebar from '../components/Sidebar/sidebar';
 import { FormContainer, Heading, Form, FormParagraph, Input, Button } from './pagesElements/authenticationFormElements';
-import Footer from "../components/Footer/footer";
+import Layout from "../components/Layout/layout";
 
 const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = (): void => {
-    // false -> true or true -> false
-    setIsOpen(!isOpen);
-  }
 
   const registerUser = async () => {
     try {
@@ -31,9 +23,8 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
+        <Layout>
           <div>
-          <Sidebar isOpen={isOpen} toggle={toggle} />
-          <Navbar toggle={toggle} />
           <FormContainer>
             <Heading>Create An Account</Heading>
             <FormParagraph>Registration Required: </FormParagraph>
@@ -57,8 +48,8 @@ const RegisterPage: React.FC = () => {
               </Button>
             </Form>
           </FormContainer>
-          <Footer />
           </div>
+        </Layout>
   );
 };
 
