@@ -10,7 +10,7 @@ const AccordionComponent = () => {
   return (
     <main>
         <AccordionContainer>
-            <AccordionHeader>Test Header</AccordionHeader>
+            <AccordionHeader>Project Description</AccordionHeader>
             <AccordionSection>
                 {items.map((item) => {
                     return <SingleItem key={item.id} title={item.title} content={item.content} />;
