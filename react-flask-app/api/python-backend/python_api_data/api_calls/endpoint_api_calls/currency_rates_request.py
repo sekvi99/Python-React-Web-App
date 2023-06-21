@@ -41,7 +41,7 @@ class CurrencyRatesRequestManager(AbstractAPIRequestManager):
                             'date': datetime.datetime.fromtimestamp(frame[0]/ 1000).strftime('%Y-%m-%d %H:%M:%S'),
                             'value': float(frame[1]),
                         }
-                        for frame in data
+                        for frame in data[-200:]
                     ]
                 }
                 

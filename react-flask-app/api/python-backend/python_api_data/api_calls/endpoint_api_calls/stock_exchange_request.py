@@ -53,7 +53,7 @@ class StockMarketAPIRequestManager(AbstractAPIRequestManager):
                             'volume': float(value['5. volume'])
                             
                         }
-                        for key, value in data.items()
+                        for key, value in list(data.items())[-200:]
                     ]
                 }
 
