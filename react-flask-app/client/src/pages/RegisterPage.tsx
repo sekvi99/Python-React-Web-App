@@ -18,6 +18,9 @@ const RegisterPage: React.FC = () => {
     } catch (error: any) {
       if (error.response.status === 401) {
         alert("Invalid credentials");
+        
+      } else if (error.response.status == 409) {
+        alert("User already exist");
       }
     }
   };
