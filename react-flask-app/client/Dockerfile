@@ -1,5 +1,7 @@
 # Use the official Node.js image as the base
-FROM node:14-alpine
+FROM node:16-alpine
+
+RUN npm cache clean --force
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -8,7 +10,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install the Node.js dependencies
-RUN npm ci
+RUN npm install
 
 # Copy the rest of the application code to the working directory
 COPY . .

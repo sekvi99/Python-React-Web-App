@@ -4,7 +4,7 @@ import requests
 import datetime
 import json
 
-@dataclass(kw_only=True)
+@dataclass
 class CurrencyRatesRequestManager(AbstractAPIRequestManager):
     """
     Definition of class that handles calls for currency rates data.

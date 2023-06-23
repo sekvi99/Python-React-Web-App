@@ -27,7 +27,7 @@ class AbstractEnvFileManager(ABC):
             str: String representation of variable value.
         """
         
-@dataclass(kw_only=True)
+@dataclass
 class EnvFileManager(AbstractEnvFileManager):
     """
     Definition of class that handles .env file.

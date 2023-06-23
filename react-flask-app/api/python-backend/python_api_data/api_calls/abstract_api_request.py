@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 
 
-@dataclass(kw_only=True)
+@dataclass
 class AbstractAPIRequestManager(ABC):
     """
     Definition of abstract class that declares common interfaces as an abstract method that needs to be implemented in order to propper handle api endpoint.

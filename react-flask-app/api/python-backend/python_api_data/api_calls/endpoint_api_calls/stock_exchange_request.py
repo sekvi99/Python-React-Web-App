@@ -5,7 +5,7 @@ from typing import Any
 import json
 
 
-@dataclass(kw_only=True)
+@dataclass
 class StockMarketAPIRequestManager(AbstractAPIRequestManager):
     """
     Definition of class that handles calls for data of stock market.

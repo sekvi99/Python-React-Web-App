@@ -1,6 +1,6 @@
-from flask import Flask, request, session
+from flask import Flask, request, session, make_response
 from flask_bcrypt import Bcrypt
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from flask_session import Session
 from config import ApplicationConfig
 from consts import *
@@ -17,7 +17,8 @@ app.config.from_object(ApplicationConfig)
 # Setting password hashing
 bcrypt = Bcrypt(app)
 #Setting cors for server
-CORS(app, supports_credentials=True)
+CORS(app,support_credentials=True)
+app.config['CORS_HEADERS'] = 'Content-Type'
 # Creating server session
 server_session = Session(app)
 db.init_app(app)
@@ -57,6 +58,7 @@ def refresh_stock_market_data(symbol: str) -> dict:
     return sm.process_api_response(symbol)
 
 @app.route('/@me', methods=['GET'])
+@cross_origin()
 def get_current_user() -> dict[str, str]:
     user_id = session.get('user_id') # Id of current user
     
@@ -71,6 +73,7 @@ def get_current_user() -> dict[str, str]:
     }
 
 @app.route('/register', methods=["POST"])
+@cross_origin()
 def register_user() -> dict[str, str]:
     """
     Declaration of an API Endpoint for user registration.
@@ -100,6 +103,7 @@ def register_user() -> dict[str, str]:
     }
 
 @app.route('/login', methods=['POST'])
+@cross_origin()
 def login_user() -> dict[str, str]:
     """
     Declaration of an API Endpoint for user login.
@@ -131,6 +135,25 @@ def login_user() -> dict[str, str]:
 def logout_user():
     session.pop("user_id")
     return "200"
+
+
+@app.after_request
+def after_request_func(response):
+    origin = request.headers.get('Origin')
+    if request.method == 'OPTIONS':
+        response = make_response()
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+        response.headers.add('Access-Control-Allow-Headers', 'x-csrf-token')
+        response.headers.add('Access-Control-Allow-Methods',
+                            'GET, POST, OPTIONS, PUT, PATCH, DELETE')
+        if origin:
+            response.headers.add('Access-Control-Allow-Origin', origin)
+    else:
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        if origin:
+            response.headers.add('Access-Control-Allow-Origin', origin)
+    return response
 
 # Run Flask app
 if __name__ == '__main__':

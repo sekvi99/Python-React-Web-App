@@ -1,5 +1,5 @@
 # Use the official Python base image
-FROM python:3.9
+FROM python:3.10-alpine
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -13,11 +13,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code to the working directory
 COPY . .
 
-# Set the Flask environment variable
-ENV FLASK_APP=config.py
 
 # Expose the port on which Flask will run (replace 5000 with the appropriate port)
 EXPOSE 5000
 
 # Run Flask when the container launches
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]

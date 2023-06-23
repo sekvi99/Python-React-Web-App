@@ -5,10 +5,10 @@ let url: string;
 if (process.env.DOCKER_ENV === 'true') {
   url = 'http://flask-server-app:5000';
 } else {
-  url = 'http://127.0.0.1:5000';
+  url = 'https://127.0.0.1:5000';
 }
 
 export const environment: Environment = {
-  production: process.env.DOCKER_ENV === 'true',
-  url,
+  production: true,
+  url: 'http://172.24.0.4:5000',
 };
