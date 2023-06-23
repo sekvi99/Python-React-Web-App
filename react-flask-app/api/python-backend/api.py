@@ -7,6 +7,8 @@ from consts import *
 from python_api_data.api_calls.endpoint_api_calls.currency_rates_request import CurrencyRatesRequestManager
 from python_api_data.api_calls.endpoint_api_calls.stock_exchange_request import StockMarketAPIRequestManager
 from models.models import db, User
+import re
+from decorators.decorators import require_api_key
 
 """
 Create Flask Application and instance of db
@@ -27,6 +29,7 @@ with app.app_context():
     db.create_all()
 
 @app.route('/api/getCurrencyData/<currency>', methods=['GET'])
+@require_api_key
 def refresh_currency_rates(currency: str) -> dict:
     """
     Declaration of endpoint for fetching currency rates and return them in propper .json format.
@@ -42,6 +45,7 @@ def refresh_currency_rates(currency: str) -> dict:
     return cr.process_api_response(currency)
 
 @app.route('/api/getStockMarketData/<symbol>', methods=['GET'])
+@require_api_key
 def refresh_stock_market_data(symbol: str) -> dict:
     """
     Declaration of endpoint for fetching stock market data and return them in propper .json format.
@@ -81,6 +85,11 @@ def register_user() -> dict[str, str]:
     # Getting values from request
     email = request.json["email"]
     password = request.json["password"]
+    
+    # Validate e-mail format
+    email_regex = r'^\w+@\w+\.\w+$'
+    if not re.match(email_regex, email):
+        return {'error': 'Invalid email format'}, 400
 
     if User.query.filter_by(email=email).first() is not None:
         # If user exist return below .json response and 409 == Conflict
