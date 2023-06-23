@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import httpClient from "../httpClient";
 import { FormContainer, Heading, Form, FormParagraph, Input, Button } from './pagesElements/authenticationFormElements';
 import Layout from "../components/Layout/layout";
+import { environment } from "../ environments/environment";
 
 const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -9,7 +10,7 @@ const RegisterPage: React.FC = () => {
 
   const registerUser = async () => {
     try {
-      const resp = await httpClient.post("//localhost:5000/register", {
+      const resp = await httpClient.post(`${environment.url}/register`, {
         email,
         password,
       });

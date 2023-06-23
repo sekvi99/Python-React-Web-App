@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { CurrencyChartProps } from '../../interfaces/currencyChart.interface'
 import { CurrencyData } from '../../interfaces/currency.interface'
 import CurrencyMarketChart from './currencyCharComponent'
+import { environment } from '../../ environments/environment'
 
 const CurrencyDashboard: React.FC<CurrencyChartProps> = ( {symbol} ) => {
   
@@ -10,7 +11,7 @@ const CurrencyDashboard: React.FC<CurrencyChartProps> = ( {symbol} ) => {
   useEffect(() => {
     const fetchData = async () => {
         try {
-            const response = await fetch(`http://127.0.0.1:5000/api/getCurrencyData/${symbol}`);
+            const response = await fetch(`${environment.url}/api/getCurrencyData/${symbol}`);
             const json = await response.json();
             setData(json.data);
         }catch (error){

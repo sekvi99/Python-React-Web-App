@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import httpClient from "../httpClient";
 import { FormContainer, Heading, Form, FormParagraph, Input, Button } from './pagesElements/authenticationFormElements';
 import Layout from "../components/Layout/layout";
+import { environment } from "../ environments/environment";
 
 const LoginPage: React.FC = () => {
     // Default state for both login and password is an empty string
@@ -16,7 +17,7 @@ const LoginPage: React.FC = () => {
 
     const loginUser = async () => {
         try{
-            const resp = await httpClient.post("//localhost:5000/login", {
+            const resp = await httpClient.post(`${environment.url}/login`, {
                 email,
                 password,
             });

@@ -5,6 +5,7 @@ import Footer from '../Footer/footer';
 import { ILayout } from '../../interfaces/layout.interface';
 import { User } from '../../types';
 import httpClient from '../../httpClient';
+import { environment } from '../../ environments/environment';
 
 const Layout: React.FC<ILayout> = ( { children }) => {
    
@@ -18,7 +19,7 @@ const Layout: React.FC<ILayout> = ( { children }) => {
     useEffect(() => {
         (async () => {
           try {
-            const resp = await httpClient.get("//localhost:5000/@me");
+            const resp = await httpClient.get(`${environment.url}/@me`);
             setUser(resp.data);
           } catch (error) {
             console.log("Not authenticated");

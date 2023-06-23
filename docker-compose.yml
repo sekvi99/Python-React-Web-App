@@ -8,10 +8,12 @@ services:
 
   api:
     build:
-      context: ./api
+      context: ./react-flask-app/api
     container_name: flask-server-app
     ports:
       - "5000:5000"
+    environment:
+      - FLASK_RUN_FROM_CLI=true
     networks:
       - app-network
     depends_on:
@@ -19,9 +21,11 @@ services:
 
   client:
     build:
-      context: .
+      context: ./react-flask-app
       dockerfile: ./Dockerfile
     container_name: react-front-app
+    environment:
+      - DOCKER_ENV=true
     ports:
       - "3000:3000"
     networks:

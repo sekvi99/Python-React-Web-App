@@ -1,5 +1,6 @@
 from consts import SECRET_KEY
 import redis
+import os
 
 class ApplicationConfig:
     """
@@ -17,4 +18,9 @@ class ApplicationConfig:
     SESSION_TYPE = "redis"
     SESSION_PERMANENT = False
     SESSION_USE_SIGNER = True
-    SESSION_REDIS = redis.from_url("redis://172.17.0.2:6379") # Ip of my redis container
+    if "FLASK_RUN_FROM_CLI" in os.environ:
+        # Running via `flask run`
+        SESSION_REDIS = redis.from_url("redis://172.17.0.2:6379")
+    else:
+        # Running via `docker-compose`
+        SESSION_REDIS = redis.from_url("redis://redis-db")

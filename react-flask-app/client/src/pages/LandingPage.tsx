@@ -7,6 +7,7 @@ import StockMarket from "../components/Charts/stockMarketDashboard";
 import CurrencyDashboard from "../components/Charts/ccurrencyChartDashboard";
 import { TabButton, TabSection } from "./pagesElements/landingPageTabs";
 import Layout from "../components/Layout/layout";
+import { environment } from "../ environments/environment";
 
 enum Tab {
   CurrencyRatesCharts,
@@ -23,8 +24,8 @@ const LandingPage: React.FC<SidebarProps> = () => {
   
     useEffect(() => {
       (async () => {
-        try {
-          const resp = await httpClient.get("//localhost:5000/@me");
+        try { 
+          const resp = await httpClient.get(`${environment.url}/@me`);
           setUser(resp.data);
         } catch (error) {
           console.log("Not authenticated");

@@ -1,6 +1,7 @@
 import httpClient from "./httpClient";
+import { environment } from "./ environments/environment";
 
 export const logoutUser = async () => {
-    await httpClient.post("//localhost:5000/logout");
+    await httpClient.post(`${environment.url}/logout`);
     window.location.href = "/";
   };
